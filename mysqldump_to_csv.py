@@ -101,7 +101,7 @@ def main():
     # listed in sys.argv[1:]
     # or stdin if no args given.
     try:
-        for line in fileinput.input(openhook=fileinput.hook_encoded('utf-8', errors='replace')):
+        for line in fileinput.input(openhook=fileinput.hook_encoded('utf-8', errors='ignore')):
             # Look for an INSERT statement and parse it.
             if is_insert(line):
                 values = get_values(line)
