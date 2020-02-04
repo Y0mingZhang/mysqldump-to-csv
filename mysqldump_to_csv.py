@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import fileinput
 import csv
 import sys
 
@@ -100,8 +99,10 @@ def main():
     # Iterate over all lines in all files
     # listed in sys.argv[1:]
     # or stdin if no args given.
+    sys.stdin.reconfigure(encoding='utf-8', errors='ignore')
     try:
-        for line in fileinput.input(openhook=fileinput.hook_encoded('utf-8', errors='ignore')):
+        for line in sys.stdin:
+            line = line.strip()
             # Look for an INSERT statement and parse it.
             if is_insert(line):
                 values = get_values(line)
